@@ -6,7 +6,6 @@ import com.sakinramzan.blogapp.pojo.PojoUserRegistration;
 import com.sakinramzan.blogapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -18,9 +17,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private TokenStore tokenStore;
 
 
     @PostMapping(value = "/register")
@@ -46,7 +42,7 @@ public class UserController {
 
     @GetMapping(value = "/logouts")
     public void logout(@RequestParam(value = "access_token") String accessToken) {
-        tokenStore.removeAccessToken(tokenStore.readAccessToken(accessToken));
+
     }
 
     @GetMapping(value = "/getUsername")
