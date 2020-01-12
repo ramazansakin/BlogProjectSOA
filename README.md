@@ -1,3 +1,3 @@
-# Blog App via SOA Architecture
+# Blog Application
 
 Sample blog project via SOA architecture on Spring Boot
