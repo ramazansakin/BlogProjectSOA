@@ -1,3 +1,3 @@
 # Blog Application
 
-Sample blog project via SOA architecture on Spring Boot
+Sample fullstack blog app project via SOA in Spring Boot & HTML / JS.
