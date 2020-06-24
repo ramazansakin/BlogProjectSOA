@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 @RestController
+@RequestMapping("/user-api")
 public class UserController {
 
     @Autowired
