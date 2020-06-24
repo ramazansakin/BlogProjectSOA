@@ -16,7 +16,11 @@ import java.io.Serializable;
 @Data
 @Builder
 @Entity
-public class Comment extends BaseEntity{
+public class Comment {
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
     private String text;
 

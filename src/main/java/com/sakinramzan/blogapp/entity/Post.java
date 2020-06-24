@@ -11,8 +11,11 @@ import java.util.Date;
 @Data
 @Builder
 @Entity
-public class Post extends BaseEntity {
+public class Post {
 
+    @Id
+    @GeneratedValue
+    private Long id;
     private String title;
     private String body;
     private Date dateCreated;

@@ -14,12 +14,12 @@ import javax.persistence.Id;
 @Data
 @Builder
 @Entity
-public class Role extends BaseEntity {
+public class Role {
 
+    @Id
+    @GeneratedValue
+    private Long id;
     String name;
 
-    public Role(long l, String user) {
-        super(l);
-    }
 }
 
