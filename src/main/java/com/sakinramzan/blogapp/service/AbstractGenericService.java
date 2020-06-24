@@ -1,18 +1,17 @@
 package com.sakinramzan.blogapp.service;
 
-import com.sakinramzan.blogapp.entity.BaseEntity;
 import com.sakinramzan.blogapp.exception.NotFoundException;
 import com.sakinramzan.blogapp.repository.IGenericRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public abstract class AbstractGenericService<T extends BaseEntity> implements IGenericService<T> {
+public abstract class AbstractGenericService<T> implements IGenericService<T> {
 
-    private final IGenericRepository<T> repository;
+    private final IGenericRepository<T, Long> repository;
 
     @Autowired
-    protected AbstractGenericService(IGenericRepository<T> repository) {
+    protected AbstractGenericService(IGenericRepository<T, Long> repository) {
         this.repository = repository;
     }
 
@@ -25,7 +24,7 @@ public abstract class AbstractGenericService<T extends BaseEntity> implements IG
     }
 
     public T findById(long id) throws Throwable {
-        return repository.findById(id).orElseThrow(() -> new NotFoundException("" + id));
+        return (T) repository.findById(id).orElseThrow(() -> new NotFoundException("" + id));
     }
 
     public void delete(T entity) {
