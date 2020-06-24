@@ -23,9 +23,4 @@ public class MainController {
         return "login";
     }
 
-    @GetMapping(value = "post/{id}")
-    public String singlePost() {
-        return "post";
-    }
-
 }

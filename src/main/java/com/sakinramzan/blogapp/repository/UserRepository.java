@@ -1,8 +1,10 @@
 package com.sakinramzan.blogapp.repository;
 
 import com.sakinramzan.blogapp.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.stereotype.Repository;
 
-public interface UserRepository extends JpaRepository<User,Long> {
+@Repository
+public interface UserRepository extends IGenericRepository<User, Long> {
     User findByUsername(String username);
 }

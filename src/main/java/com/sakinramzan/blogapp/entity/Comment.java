@@ -9,17 +9,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.io.Serializable;
 
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
+@Builder
 @Entity
 public class Comment {
 
     @Id
     @GeneratedValue
-    private Long Id;
+    private Long id;
 
     private String text;
 
@@ -28,11 +29,5 @@ public class Comment {
 
     @ManyToOne
     private User creator;
-
-    public Comment(String text, Post post, User creator) {
-        this.text = text;
-        this.post = post;
-        this.creator = creator;
-    }
 }
 

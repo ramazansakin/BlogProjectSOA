@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
+@Builder
 @Entity
 public class User {
 
@@ -23,14 +23,14 @@ public class User {
 
     @JsonIgnore
     private String password;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Role> roles;
 
-    public User(String username, String password, List<Role> roles) {
+    public <T> User(String username, String password, List<T> asList) {
         this.username = username;
         this.password = password;
-        this.roles = roles;
+        this.roles = (List<Role>) asList;
     }
-
 }
 

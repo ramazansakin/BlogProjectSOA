@@ -3,8 +3,8 @@ package com.sakinramzan.blogapp.controller;
 import com.sakinramzan.blogapp.entity.Role;
 import com.sakinramzan.blogapp.entity.User;
 import com.sakinramzan.blogapp.pojo.PojoUserRegistration;
-import com.sakinramzan.blogapp.service.UserService;
-import org.springframework.security.core.context.SecurityContextHolder;
+import com.sakinramzan.blogapp.service.impl.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -12,14 +12,11 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 @RestController
-@RequestMapping("/user-api")
 public class UserController {
 
-    private final UserService userService;
+    @Autowired
+    private UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     @PostMapping(value = "/register")
     public String register(@RequestBody PojoUserRegistration userRegistration) {
@@ -33,7 +30,16 @@ public class UserController {
         if (pattern.matcher(userRegistration.getUsername()).find())
             return "No special characters are allowed in the username";
 
-        userService.save(new User(userRegistration.getUsername(), userRegistration.getPassword(), Arrays.asList(new Role(1L, "USER"), new Role(2L, "ACTUATOR"))));
+        userService.save(
+                new User(
+                        userRegistration.getUsername(),
+                        userRegistration.getPassword(),
+                        Arrays.asList(
+                                new Role(1L, "USER"),
+                                new Role(2L, "ACTUATOR")
+                        )
+                )
+        );
         return "User created";
     }
 
@@ -47,11 +53,10 @@ public class UserController {
 
     }
 
-    @GetMapping(value = "/getUsername")
-    public String getUsername() {
-        return SecurityContextHolder.getContext().getAuthentication().getName();
-    }
-
+//    @GetMapping(value = "/getUsername")
+//    public String getUsername() {
+//        return SecurityContextHolder.getContext().getAuthentication().getName();
+//    }
 
 }
 

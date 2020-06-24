@@ -1,16 +1,12 @@
 package com.sakinramzan.blogapp.pojo;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
+@Builder
 public class PojoComment {
     private String text;
     private Long postId;
-
 }

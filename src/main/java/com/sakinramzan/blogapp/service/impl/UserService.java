@@ -1,8 +1,9 @@
-package com.sakinramzan.blogapp.service;
+package com.sakinramzan.blogapp.service.impl;
 
 
 import com.sakinramzan.blogapp.entity.User;
 import com.sakinramzan.blogapp.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +16,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
