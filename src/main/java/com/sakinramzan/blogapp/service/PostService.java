@@ -4,7 +4,6 @@ package com.sakinramzan.blogapp.service;
 import com.sakinramzan.blogapp.entity.Post;
 import com.sakinramzan.blogapp.entity.User;
 import com.sakinramzan.blogapp.repository.PostRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,10 +12,13 @@ import java.util.Optional;
 @Service
 public class PostService {
 
-    @Autowired
-    private PostRepository postRepository;
+    private final PostRepository postRepository;
 
-    public List<Post> getAllPosts(){
+    public PostService(PostRepository postRepository) {
+        this.postRepository = postRepository;
+    }
+
+    public List<Post> getAllPosts() {
         return postRepository.findAll();
     }
 
@@ -24,13 +26,13 @@ public class PostService {
         postRepository.save(post);
     }
 
-    public List<Post> findByUser(User user){
+    public List<Post> findByUser(User user) {
         return postRepository.findByCreatorId(user.getId());
     }
 
-    public boolean deletePost(Long postId){
+    public boolean deletePost(Long postId) {
         Optional<Post> thePost = postRepository.findById(postId);
-        if(!thePost.isPresent())
+        if (!thePost.isPresent())
             return false;
         postRepository.deleteById(postId);
         return true;
