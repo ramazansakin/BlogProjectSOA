@@ -1,18 +1,18 @@
 package com.sakinramzan.blogapp.controller;
 
-import com.sakinramzan.blogapp.config.CustomUserDetails;
 import com.sakinramzan.blogapp.entity.Comment;
 import com.sakinramzan.blogapp.entity.Post;
-import com.sakinramzan.blogapp.entity.User;
-import com.sakinramzan.blogapp.pojo.PojoComment;
-import com.sakinramzan.blogapp.service.CommentService;
-import com.sakinramzan.blogapp.service.PostService;
-import com.sakinramzan.blogapp.service.UserService;
+import com.sakinramzan.blogapp.service.impl.CommentService;
+import com.sakinramzan.blogapp.service.impl.PostService;
+import com.sakinramzan.blogapp.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,57 +28,65 @@ public class BlogController {
     @Autowired
     private CommentService commentService;
 
-    @GetMapping(value="/posts")
-    public List<Post> posts(){
-        return postService.getAllPosts();
+    @GetMapping(value = "/posts")
+    public List<Post> posts() {
+        return postService.findAll();
     }
 
-    @GetMapping(value="/the_post/{id}")
-    public Optional<Post> getPostById(@PathVariable Long id){
-        return postService.getPost(id);
+    @GetMapping(value = "/post/{id}")
+    public Optional<Post> getPostById(@PathVariable Long id) throws Throwable {
+        return Optional.ofNullable(postService.findById(id));
     }
 
-    @PostMapping(value="/post")
-    public String publishPost(@RequestBody Post post){
-        CustomUserDetails userDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(post == null)
-            post.setDateCreated(new Date());
-        post.setCreator(userService.getUser(userDetails.getUsername()));
-        postService.insert(post);
-        return "Post was published";
-    }
+//    @PostMapping(value = "/post")
+//    public String publishPost(@RequestBody Post post) {
+////        CustomUserDetails userDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if (post == null)
+//            post.setDateCreated(new Date());
+//        post.setCreator(userService.getUser(userDetails.getUsername()));
+//        postService.save(post);
+//        return "Post was published";
+//    }
 
-    @GetMapping(value="/posts/{username}")
-    public List<Post> postsByUser(@PathVariable String username){
+    @GetMapping(value = "/posts/{username}")
+    public List<Post> postsByUser(@PathVariable String username) {
         return postService.findByUser(userService.getUser(username));
     }
 
     @DeleteMapping(value = "/post/{id}")
-    public boolean deletePost(@PathVariable Long id){
-        return postService.deletePost(id);
+    public boolean deletePost(@PathVariable Long id) throws Throwable {
+        return postService.deleteById(id);
     }
 
     @DeleteMapping(value = "/comment/{id}")
-    public boolean deleteComment(@PathVariable Long id){
-        return commentService.deletePost(id);
+    public ResponseEntity deleteComment(@PathVariable Long id) {
+        try {
+            commentService.deleteById(id);
+        } catch (Throwable throwable) {
+            return new ResponseEntity(throwable.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity("Comment was deleted successfully", HttpStatus.ACCEPTED);
     }
 
-
-    @GetMapping(value = "/comments/{postId}")
-    public List<Comment> getComments(@PathVariable Long postId){
+    @GetMapping(value = "/post-comments/{postId}")
+    public List<Comment> getComments(@PathVariable Long postId) {
         return commentService.getComments(postId);
     }
 
-    @PostMapping(value = "/post/postComment")
-    public boolean postComment(@RequestBody PojoComment comment){
-        Optional<Post> post = postService.find(comment.getPostId());
-        CustomUserDetails userDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User creator = userService.getUser(userDetails.getUsername());
-        if(!post.isPresent() || creator == null)
-            return false;
-
-        commentService.comment(new Comment(comment.getText(), post.get() ,creator));
-        return true;
-    }
+//    @PostMapping(value = "/post/postComment")
+//    public boolean postComment(@RequestBody PojoComment comment) throws Throwable {
+//        Optional<Post> post = Optional.ofNullable(postService.findById(comment.getPostId()));
+//        CustomUserDetails userDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User creator = userService.getUser(userDetails.getUsername());
+//        if (!post.isPresent() || creator == null)
+//            return false;
+//        commentService.save(
+//                Comment.builder()
+//                        .creator(creator)
+//                        .post(post.get())
+//                        .text(comment.getText())
+//                        .build());
+//        return true;
+//    }
 
 }

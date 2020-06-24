@@ -1,25 +1,22 @@
 package com.sakinramzan.blogapp.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
-@Builder
 @Entity
-public class Role extends BaseEntity {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public abstract class BaseEntity implements Serializable {
 
-    String name;
+    @Id
+    @GeneratedValue
+    private Long Id;
 
-    public Role(long l, String user) {
-        super(l);
-    }
 }
-
