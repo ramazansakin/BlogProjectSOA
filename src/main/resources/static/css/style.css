@@ -2,27 +2,27 @@ li {
     list-style: none;
 }
 
-.navMenu{
+.navMenu {
     margin-bottom: 0;
 }
 
-.navMenu li{
-    display:inline-block;
+.navMenu li {
+    display: inline-block;
 }
 
-#loginHeader{
+#loginHeader {
     text-align: center;
     padding-top: 2em;
 }
 
-.align-center{
-    float:none;
+.align-center {
+    float: none;
     margin: 0 auto;
 }
 
-#loggedIn{
-    display:inline;
-    float:right;
+#loggedIn {
+    display: inline;
+    float: right;
 }
 
 .comments {
