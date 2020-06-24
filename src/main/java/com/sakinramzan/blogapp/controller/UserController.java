@@ -4,7 +4,6 @@ import com.sakinramzan.blogapp.entity.Role;
 import com.sakinramzan.blogapp.entity.User;
 import com.sakinramzan.blogapp.pojo.PojoUserRegistration;
 import com.sakinramzan.blogapp.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +15,11 @@ import java.util.regex.Pattern;
 @RequestMapping("/user-api")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping(value = "/register")
     public String register(@RequestBody PojoUserRegistration userRegistration) {
@@ -32,7 +33,7 @@ public class UserController {
         if (pattern.matcher(userRegistration.getUsername()).find())
             return "No special characters are allowed in the username";
 
-        userService.save(new User(userRegistration.getUsername(), userRegistration.getPassword(), Arrays.asList(new Role("USER"), new Role("ACTUATOR"))));
+        userService.save(new User(userRegistration.getUsername(), userRegistration.getPassword(), Arrays.asList(new Role(1L, "USER"), new Role(2L, "ACTUATOR"))));
         return "User created";
     }
 
