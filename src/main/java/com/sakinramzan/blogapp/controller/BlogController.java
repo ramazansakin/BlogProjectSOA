@@ -10,10 +10,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
+@CrossOrigin(
+        origins = {
+                "http://localhost:8090"
+        },
+        methods = {
+                RequestMethod.GET,
+                RequestMethod.POST,
+                RequestMethod.PUT,
+                RequestMethod.DELETE,
+                RequestMethod.OPTIONS,
+                RequestMethod.HEAD,
+        },
+        allowCredentials = "true",
+        allowedHeaders = "*"
+)
 @RestController
 @RequestMapping("/blog-api")
 public class BlogController {
@@ -33,8 +46,8 @@ public class BlogController {
     }
 
     @GetMapping(value = "/post/{id}")
-    public Optional<Post> getPostById(@PathVariable Long id) throws Throwable {
-        return Optional.ofNullable(postService.findById(id));
+    public Post getPostById(@PathVariable Long id) throws Throwable {
+        return postService.findById(id);
     }
 
     @PostMapping(value = "/post")
