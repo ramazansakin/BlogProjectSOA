@@ -2,18 +2,14 @@ package com.sakinramzan.blogapp.service;
 
 import com.sakinramzan.blogapp.exception.NotFoundException;
 import com.sakinramzan.blogapp.repository.IGenericRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 public abstract class AbstractGenericService<T> implements IGenericService<T> {
 
     private final IGenericRepository<T, Long> repository;
-
-    @Autowired
-    protected AbstractGenericService(IGenericRepository<T, Long> repository) {
-        this.repository = repository;
-    }
 
     public List<T> findAll() {
         return repository.findAll();

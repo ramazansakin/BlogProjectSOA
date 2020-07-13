@@ -8,11 +8,9 @@ import com.sakinramzan.blogapp.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,15 +37,11 @@ public class BlogController {
         return Optional.ofNullable(postService.findById(id));
     }
 
-//    @PostMapping(value = "/post")
-//    public String publishPost(@RequestBody Post post) {
-////        CustomUserDetails userDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        if (post == null)
-//            post.setDateCreated(new Date());
-//        post.setCreator(userService.getUser(userDetails.getUsername()));
-//        postService.save(post);
-//        return "Post was published";
-//    }
+    @PostMapping(value = "/post")
+    public String publishPost(@RequestBody Post post) {
+        postService.save(post);
+        return "Post was published";
+    }
 
     @GetMapping(value = "/posts/{username}")
     public List<Post> postsByUser(@PathVariable String username) {
