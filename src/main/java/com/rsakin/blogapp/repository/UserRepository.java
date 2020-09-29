@@ -1,6 +1,6 @@
-package com.sakinramzan.blogapp.repository;
+package com.rsakin.blogapp.repository;
 
-import com.sakinramzan.blogapp.entity.User;
+import com.rsakin.blogapp.entity.User;
 import org.springframework.stereotype.Repository;
 
 @Repository

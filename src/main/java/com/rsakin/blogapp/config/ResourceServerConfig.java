@@ -1,4 +1,4 @@
-package com.sakinramzan.blogapp.config;
+package com.rsakin.blogapp.config;
 
 
 import org.springframework.context.annotation.Configuration;

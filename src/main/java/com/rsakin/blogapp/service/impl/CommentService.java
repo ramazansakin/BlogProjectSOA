@@ -1,8 +1,8 @@
-package com.sakinramzan.blogapp.service.impl;
+package com.rsakin.blogapp.service.impl;
 
-import com.sakinramzan.blogapp.entity.Comment;
-import com.sakinramzan.blogapp.repository.CommentRepository;
-import com.sakinramzan.blogapp.service.AbstractGenericService;
+import com.rsakin.blogapp.entity.Comment;
+import com.rsakin.blogapp.service.AbstractGenericService;
+import com.rsakin.blogapp.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

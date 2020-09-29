@@ -1,9 +1,9 @@
-package com.sakinramzan.blogapp.controller;
+package com.rsakin.blogapp.controller;
 
-import com.sakinramzan.blogapp.entity.Role;
-import com.sakinramzan.blogapp.entity.User;
-import com.sakinramzan.blogapp.pojo.PojoUserRegistration;
-import com.sakinramzan.blogapp.service.impl.UserService;
+import com.rsakin.blogapp.entity.Role;
+import com.rsakin.blogapp.entity.User;
+import com.rsakin.blogapp.service.impl.UserService;
+import com.rsakin.blogapp.pojo.PojoUserRegistration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

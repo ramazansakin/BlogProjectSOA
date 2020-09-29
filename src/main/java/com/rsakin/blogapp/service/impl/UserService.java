@@ -1,8 +1,8 @@
-package com.sakinramzan.blogapp.service.impl;
+package com.rsakin.blogapp.service.impl;
 
 
-import com.sakinramzan.blogapp.entity.User;
-import com.sakinramzan.blogapp.repository.UserRepository;
+import com.rsakin.blogapp.entity.User;
+import com.rsakin.blogapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

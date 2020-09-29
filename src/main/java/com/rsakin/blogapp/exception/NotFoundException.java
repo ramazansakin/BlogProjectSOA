@@ -1,4 +1,4 @@
-package com.sakinramzan.blogapp.exception;
+package com.rsakin.blogapp.exception;
 
 public class NotFoundException extends Exception {
 

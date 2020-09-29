@@ -1,7 +1,7 @@
-package com.sakinramzan.blogapp.service;
+package com.rsakin.blogapp.service;
 
-import com.sakinramzan.blogapp.exception.NotFoundException;
-import com.sakinramzan.blogapp.repository.IGenericRepository;
+import com.rsakin.blogapp.exception.NotFoundException;
+import com.rsakin.blogapp.repository.IGenericRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

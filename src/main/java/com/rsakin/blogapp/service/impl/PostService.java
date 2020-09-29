@@ -1,10 +1,10 @@
-package com.sakinramzan.blogapp.service.impl;
+package com.rsakin.blogapp.service.impl;
 
 
-import com.sakinramzan.blogapp.entity.Post;
-import com.sakinramzan.blogapp.entity.User;
-import com.sakinramzan.blogapp.repository.PostRepository;
-import com.sakinramzan.blogapp.service.AbstractGenericService;
+import com.rsakin.blogapp.entity.Post;
+import com.rsakin.blogapp.entity.User;
+import com.rsakin.blogapp.repository.PostRepository;
+import com.rsakin.blogapp.service.AbstractGenericService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

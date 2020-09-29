@@ -1,20 +1,17 @@
-package com.sakinramzan.blogapp.controller;
+package com.rsakin.blogapp.controller;
 
-import com.sakinramzan.blogapp.entity.Comment;
-import com.sakinramzan.blogapp.entity.Post;
-import com.sakinramzan.blogapp.exception.NotFoundException;
-import com.sakinramzan.blogapp.pojo.PojoComment;
-import com.sakinramzan.blogapp.service.impl.CommentService;
-import com.sakinramzan.blogapp.service.impl.PostService;
-import com.sakinramzan.blogapp.service.impl.UserService;
+import com.rsakin.blogapp.entity.Comment;
+import com.rsakin.blogapp.entity.Post;
+import com.rsakin.blogapp.exception.NotFoundException;
+import com.rsakin.blogapp.service.impl.CommentService;
+import com.rsakin.blogapp.service.impl.PostService;
+import com.rsakin.blogapp.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin(
         origins = {

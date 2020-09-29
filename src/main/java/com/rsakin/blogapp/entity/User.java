@@ -1,4 +1,4 @@
-package com.sakinramzan.blogapp.entity;
+package com.rsakin.blogapp.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

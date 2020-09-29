@@ -1,6 +1,6 @@
-package com.sakinramzan.blogapp.repository;
+package com.rsakin.blogapp.repository;
 
-import com.sakinramzan.blogapp.entity.Comment;
+import com.rsakin.blogapp.entity.Comment;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

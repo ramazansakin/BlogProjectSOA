@@ -1,6 +1,6 @@
-package com.sakinramzan.blogapp.service;
+package com.rsakin.blogapp.service;
 
-import com.sakinramzan.blogapp.exception.NotFoundException;
+import com.rsakin.blogapp.exception.NotFoundException;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.sakinramzan.blogapp.repository;
+package com.rsakin.blogapp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;

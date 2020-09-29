@@ -1,4 +1,4 @@
-package com.sakinramzan.blogapp.pojo;
+package com.rsakin.blogapp.pojo;
 
 import lombok.*;
 

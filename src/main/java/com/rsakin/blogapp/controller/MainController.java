@@ -1,4 +1,4 @@
-package com.sakinramzan.blogapp.controller;
+package com.rsakin.blogapp.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
