@@ -2,15 +2,19 @@ package com.sakinramzan.blogapp.controller;
 
 import com.sakinramzan.blogapp.entity.Comment;
 import com.sakinramzan.blogapp.entity.Post;
+import com.sakinramzan.blogapp.exception.NotFoundException;
+import com.sakinramzan.blogapp.pojo.PojoComment;
 import com.sakinramzan.blogapp.service.impl.CommentService;
 import com.sakinramzan.blogapp.service.impl.PostService;
 import com.sakinramzan.blogapp.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(
         origins = {
@@ -46,7 +50,7 @@ public class BlogController {
     }
 
     @GetMapping(value = "/post/{id}")
-    public Post getPostById(@PathVariable Long id) throws Throwable {
+    public Post getPostById(@PathVariable Long id) throws NotFoundException {
         return postService.findById(id);
     }
 
@@ -67,13 +71,13 @@ public class BlogController {
     }
 
     @DeleteMapping(value = "/comment/{id}")
-    public ResponseEntity deleteComment(@PathVariable Long id) {
+    public ResponseEntity<String> deleteComment(@PathVariable Long id) {
         try {
             commentService.deleteById(id);
-        } catch (Throwable throwable) {
-            return new ResponseEntity(throwable.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (NotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity("Comment was deleted successfully", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("Comment was deleted successfully", HttpStatus.ACCEPTED);
     }
 
     @GetMapping(value = "/post-comments/{postId}")

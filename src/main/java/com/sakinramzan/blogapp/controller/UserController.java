@@ -17,7 +17,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
     @PostMapping(value = "/register")
     public String register(@RequestBody PojoUserRegistration userRegistration) {
         if (!userRegistration.getPassword().equals(userRegistration.getPasswordConfirmation()))
@@ -50,7 +49,6 @@ public class UserController {
 
     @GetMapping(value = "/logouts")
     public void logout(@RequestParam(value = "access_token") String accessToken) {
-
     }
 
 //    @GetMapping(value = "/getUsername")

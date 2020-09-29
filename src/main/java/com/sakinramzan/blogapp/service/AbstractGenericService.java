@@ -19,7 +19,7 @@ public abstract class AbstractGenericService<T> implements IGenericService<T> {
         return (T) repository.save(entity);
     }
 
-    public T findById(long id) throws Throwable {
+    public T findById(long id) throws NotFoundException {
         return (T) repository.findById(id).orElseThrow(() -> new NotFoundException("" + id));
     }
 
@@ -27,7 +27,7 @@ public abstract class AbstractGenericService<T> implements IGenericService<T> {
         repository.delete(entity);
     }
 
-    public boolean deleteById(long id) throws Throwable {
+    public boolean deleteById(long id) throws NotFoundException {
         findById(id);
         repository.deleteById(id);
         return true;
